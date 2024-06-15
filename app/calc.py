@@ -1,5 +1,5 @@
 import app
-
+import math
 
 class InvalidPermissions(Exception):
     pass
@@ -32,8 +32,24 @@ class Calculator:
         self.check_types(x, y)
         return x ** y
 
+    def log_base_10(self, x):
+        self.check_type(x)
+        if x <= 0:
+            raise ValueError("El logaritmo en base 10 solo está definido para números positivos.")
+        return math.log10(x)
+
+    def square_root(self, x):
+        self.check_type(x)
+        if x < 0:
+            raise ValueError("La raíz cuadrada no está definida para números negativos.")
+        return math.sqrt(x)
+
     def check_types(self, x, y):
         if not isinstance(x, (int, float)) or not isinstance(y, (int, float)):
+            raise TypeError("Parameters must be numbers")
+
+    def check_type(self, x):
+        if not isinstance(x, (int, float)):
             raise TypeError("Parameters must be numbers")
 
 
